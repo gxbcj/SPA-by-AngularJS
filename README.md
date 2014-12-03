@@ -3,7 +3,7 @@ SPA-by-AngularJS
 
 这个项目是根据`angular-ui-router`中的`sample`更改的(比较懒...)，主要还是为了做个对比原项目[ui-router](https://github.com/angular-ui/ui-router/tree/master/sample)<br>
 在这个sample的基础上添加了requirejs模块化编程，前端项目构建grunt。<br>
-使用firefox打开index.html，chrome打开会报XMLHttpRequest加载本地文件错误。
+要使用firefox打开index.html，chrome打开会报XMLHttpRequest加载本地文件错误。
 
 ##前端模块化编程
 在我们之前的编程中，代码几乎都是放在script的文件夹中，使用的时候，要根据依赖关系，在页面中引入，这样就比较杂乱。
@@ -67,7 +67,7 @@ shim描述了lib间的依赖关系，比如angular-animate和ui.router依赖angu
 
 ###grunt配置文件
 ####package.json
-package.json文件主要用来描述，
+package.json文件主要用来存储npm模块的依赖项，
 ####gruntfile.js文件
 主要用来配置各个任务的参数，在这个项目中，我们一共使用了5个任务，分别时copy，watch，clean，cssmin，requirejs，通过代码
 ```javasrcipt
@@ -80,7 +80,7 @@ grunt.loadNpmTasks('grunt-contrib-copy');
 加载这个5个任务。
 
 每个任务负责不同的工作，因此需要进行参数配置，比如copy任务，需要指定其拷贝文件的来源和目的。在代码
-```
+```javascript
 grunt.initConfig({
 ...
 });
@@ -157,8 +157,11 @@ Running "clean:dist" (clean) task
 
 Done, without errors.
 ```
-
-
+后记
+-------
+现在的前端项目构建越来越复杂了，感觉后端有的概念，前端也有，grunt＋bower就等于maven，本项目还没使用bower，觉得前端的第三方lib不是那么多，就没引入。
+该项目还不是最"极端"的SPA，我们至少还保留了template中的html文件，其实这些可以用jade来代替，编译后的html以requirejs模块合并到bootstrap文件中，那整个项目就一个index.html，一个bootstrap.js，一个all.min.css。
+jade模块很容易上手，关键强制dom层次可以增加代码的阅读，实在受不了那些不注重层次缩进的html代码。反正我习惯了jade后，再也不想些html了。
 
 
 
