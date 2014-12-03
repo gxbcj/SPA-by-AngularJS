@@ -1,16 +1,16 @@
 SPA-by-AngularJS
 ================
 
-这个项目是根据angular-ui-router中的sample更改的(比较懒...)，主要还是为了做个对比原项目[ui-router](https://github.com/angular-ui/ui-router/tree/master/sample)
-在这个sample的基础上添加了requirejs模块化编程，前端项目构建grunt。
-使用firefox打开index.html时，chrome打开会报XMLHttpRequest加载本地文件错误。
+这个项目是根据`angular-ui-router`中的`sample`更改的(比较懒...)，主要还是为了做个对比原项目[ui-router](https://github.com/angular-ui/ui-router/tree/master/sample)<br>
+在这个sample的基础上添加了requirejs模块化编程，前端项目构建grunt。<br>
+使用firefox打开index.html，chrome打开会报XMLHttpRequest加载本地文件错误。
 
 ##前端模块化编程
 在我们之前的编程中，代码几乎都是放在script的文件夹中，使用的时候，要根据依赖关系，在页面中引入，这样就比较杂乱。
 引入前端模块化管理，它可以轻松管理各种JavaScript脚本的依赖关系，自动加载各个模块，使得网页结构清晰合理，这里使用了requireJS。
 
 ##模块化编程带来的弊端
-我们通过requireJS可以将代码分割成若干模块，保持了代码的模块化和易维护性。但是在生产环境中，所有的JavaScript文件分离，带来的弊端就是会导致很多次的请求(request)，会浪费很多的时间。因此通过合并这些脚本文件，可以减少请求次数来优化项目。
+我们通过`requireJS`可以将代码分割成若干模块，保持了代码的模块化和易维护性。但是在生产环境中，所有的JavaScript文件分离，带来的弊端就是会导致很多次的请求(request)，会浪费很多的时间。因此通过合并这些脚本文件，可以减少请求次数来优化项目。
 其实把所有js合并到一个文件，对于调试js也比较方便。
 
 ##单页应用(Single Page Application)
@@ -18,10 +18,10 @@ SPA-by-AngularJS
 AngularJS就是单页应用的前端架构。
 
 #安装node.js
-首先需要安装[nodejs](http://www.nodejs.org/)，官网上下载个安装就OK了。
+首先需要安装[nodejs](http://www.nodejs.org/).
 
 #安装grunt
-首先安装grunt，这里使用node.js命令安装
+安装grunt，这里使用node.js命令安装
 ```javascript
 npm install -g grunt-cli
 ```
@@ -30,13 +30,14 @@ npm install -g grunt-cli
 #框架介绍
 准备工作做完，下面先介绍下这个项目的目录组织结构
 ##目录结构
-src, common 用户代码，之所以用两个也只是为了演示多目录的使用，就像我们java项目中的src folder, 每个js文件都是符合requireJS标准的。<br>
-lib第三方代码库。比如jquery, angular, lodash, require等。<br>
-asset 放的是演示数据，其实实际中，这些数据是通过restful api获取的<br>
-css css文件放这里<br>
-config requires的配置文件<br>
-build 编译后的目录<br>
-node_modules 运行grunt的node依赖包<br>
+`src`, `common` 为用户代码，之所以用两个目录也只是为了演示多目录的使用，就像我们java项目中的src folder, 每个js文件都是符合requireJS标准的。<br>
+lib第三方代码库。比如`jquery`, `angular`, `lodash`, `require`等。<br>
+'template'，存放的是html模版。<br>
+`asset` 放的是演示数据，其实实际中，这些数据是通过`restful api`获取的<br>
+`css` css文件放这里<br>
+`config` requires的配置文件<br>
+`build` 编译后的目录<br>
+`node_modules` 运行grunt的node依赖包<br>
 ##配置介绍
 ###require.config.js
 ```javascript
@@ -84,17 +85,17 @@ grunt.initConfig({
 ...
 });
 ```
-中配置。
+中配置。具体的参数配置可以查阅相关的任务文档，这里不细致的阐述个参数的意义了(其实看看名字都可以猜出来)...
 
 最后就是注册任务
 ```javascript
 grunt.registerTask('build', ['requirejs:root','cssmin','copy','clean']);
 ```
 这里注册了一个build的自定义任务，这里总共运行了4个任务<br>
-require:root，把所有的js文件合并到build/bootstrap.js文件中。<br>
-cssmin，压缩css文件到build/all.min.css。<br>
-copy，把文件bootstrap.js和all.min.css拷贝到目录dest中<br>
-clean，清除build目录下的所有文件<br>
+`require:root`，把所有的js文件合并到build/bootstrap.js文件中。<br>
+`cssmin`，压缩css文件到build/all.min.css。<br>
+`copy`，把文件bootstrap.js和all.min.css拷贝到目录dest中<br>
+`clean`，清除build目录下的所有文件<br>
 运行效果：
 ```bash
 CH-C02MM1SYFH00:contacts xguo$ grunt build
